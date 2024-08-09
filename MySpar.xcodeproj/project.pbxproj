@@ -11,7 +11,7 @@
 		1A6725B52C66C27B004B3730 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6725B42C66C27B004B3730 /* ContentView.swift */; };
 		1A6725B72C66C27D004B3730 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6725B62C66C27D004B3730 /* Assets.xcassets */; };
 		1A6725BA2C66C27D004B3730 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6725B92C66C27D004B3730 /* Preview Assets.xcassets */; };
-		1A6725C32C66C325004B3730 /* UISystem in Frameworks */ = {isa = PBXBuildFile; productRef = 1A6725C22C66C325004B3730 /* UISystem */; };
+		1AF8DDAA2C66D09400C5F315 /* UISystem in Frameworks */ = {isa = PBXBuildFile; productRef = 1AF8DDA92C66D09400C5F315 /* UISystem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,7 +20,7 @@
 		1A6725B42C66C27B004B3730 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1A6725B62C66C27D004B3730 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A6725B92C66C27D004B3730 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1A6725C02C66C311004B3730 /* UISystem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UISystem; path = Modules/UISystem; sourceTree = SOURCE_ROOT; };
+		1AF8DDA82C66D07B00C5F315 /* UISystem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UISystem; path = Modules/UISystem; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A6725C32C66C325004B3730 /* UISystem in Frameworks */,
+				1AF8DDAA2C66D09400C5F315 /* UISystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,7 +55,7 @@
 		1A6725B12C66C27B004B3730 /* MySpar */ = {
 			isa = PBXGroup;
 			children = (
-				1A6725C02C66C311004B3730 /* UISystem */,
+				1AF8DDA82C66D07B00C5F315 /* UISystem */,
 				1A6725B22C66C27B004B3730 /* MySparApp.swift */,
 				1A6725B42C66C27B004B3730 /* ContentView.swift */,
 				1A6725B62C66C27D004B3730 /* Assets.xcassets */,
@@ -96,7 +96,7 @@
 			);
 			name = MySpar;
 			packageProductDependencies = (
-				1A6725C22C66C325004B3730 /* UISystem */,
+				1AF8DDA92C66D09400C5F315 /* UISystem */,
 			);
 			productName = MySpar;
 			productReference = 1A6725AF2C66C27B004B3730 /* MySpar.app */;
@@ -369,7 +369,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1A6725C22C66C325004B3730 /* UISystem */ = {
+		1AF8DDA92C66D09400C5F315 /* UISystem */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UISystem;
 		};
