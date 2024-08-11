@@ -11,6 +11,7 @@
 		1A6725B52C66C27B004B3730 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6725B42C66C27B004B3730 /* ContentView.swift */; };
 		1A6725B72C66C27D004B3730 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6725B62C66C27D004B3730 /* Assets.xcassets */; };
 		1A6725BA2C66C27D004B3730 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6725B92C66C27D004B3730 /* Preview Assets.xcassets */; };
+		1A8EE8D52C68947B00EE934C /* UISystem in Frameworks */ = {isa = PBXBuildFile; productRef = 1A8EE8D42C68947B00EE934C /* UISystem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A8EE8D52C68947B00EE934C /* UISystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +40,7 @@
 			children = (
 				1A6725B12C66C27B004B3730 /* MySpar */,
 				1A6725B02C66C27B004B3730 /* Products */,
+				1A8EE8D32C68947B00EE934C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +72,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		1A8EE8D32C68947B00EE934C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,6 +96,7 @@
 			);
 			name = MySpar;
 			packageProductDependencies = (
+				1A8EE8D42C68947B00EE934C /* UISystem */,
 			);
 			productName = MySpar;
 			productReference = 1A6725AF2C66C27B004B3730 /* MySpar.app */;
@@ -356,6 +367,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A8EE8D42C68947B00EE934C /* UISystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UISystem;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A6725A72C66C27B004B3730 /* Project object */;
 }
