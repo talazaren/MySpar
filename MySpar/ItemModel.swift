@@ -12,17 +12,20 @@ struct Item {
     let id = UUID()
     let title: String
     let cost: Double
-    let oldCost: Double?
     let discount: Double?
     let image: String
-    let accessory: AccessoryType
-    let rating: Double
-    let country: Country
+    let accessory: AccessoryType?
+    let scores: [Int]
+    let country: Country?
     let type: AmountType
     
     var isOrdered: Bool
     var isFavorite: Bool
-    var reviews: [String]
+    var reviews: [String]?
+    
+    var rating: Double {
+        Double(scores.reduce(0, +) / scores.count)
+    }
 }
 
 enum Country: String {
