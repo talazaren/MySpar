@@ -26,6 +26,11 @@ struct Item {
     var rating: Double {
         Double(scores.reduce(0, +) / scores.count)
     }
+    var discountingCost: Double {
+        if let discount {
+            return cost * (1 - discount)
+        } else { return cost }
+    }
 }
 
 enum Country: String {

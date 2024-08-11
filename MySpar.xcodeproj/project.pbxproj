@@ -14,6 +14,7 @@
 		1A8EE8D52C68947B00EE934C /* UISystem in Frameworks */ = {isa = PBXBuildFile; productRef = 1A8EE8D42C68947B00EE934C /* UISystem */; };
 		1A8EE8D72C68C82600EE934C /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8EE8D62C68C82600EE934C /* ItemModel.swift */; };
 		1A8EE8D92C68CBB000EE934C /* ItemsMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8EE8D82C68CBB000EE934C /* ItemsMockData.swift */; };
+		1A8EE8DB2C68EC7800EE934C /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8EE8DA2C68EC7800EE934C /* ItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		1A8EE8CE2C67BF0000EE934C /* UISystem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UISystem; path = Modules/UISystem; sourceTree = SOURCE_ROOT; };
 		1A8EE8D62C68C82600EE934C /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		1A8EE8D82C68CBB000EE934C /* ItemsMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsMockData.swift; sourceTree = "<group>"; };
+		1A8EE8DA2C68EC7800EE934C /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				1A6725B42C66C27B004B3730 /* ContentView.swift */,
 				1A8EE8D62C68C82600EE934C /* ItemModel.swift */,
 				1A8EE8D82C68CBB000EE934C /* ItemsMockData.swift */,
+				1A8EE8DA2C68EC7800EE934C /* ItemViewModel.swift */,
 				1A6725B62C66C27D004B3730 /* Assets.xcassets */,
 				1A6725B82C66C27D004B3730 /* Preview Content */,
 			);
@@ -161,6 +164,7 @@
 				1A8EE8D92C68CBB000EE934C /* ItemsMockData.swift in Sources */,
 				1A8EE8D72C68C82600EE934C /* ItemModel.swift in Sources */,
 				1A6725B52C66C27B004B3730 /* ContentView.swift in Sources */,
+				1A8EE8DB2C68EC7800EE934C /* ItemViewModel.swift in Sources */,
 				1A6725B32C66C27B004B3730 /* MySparApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
