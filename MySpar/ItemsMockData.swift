@@ -7,9 +7,7 @@
 
 import Foundation
 
-final class ItemsMockData {
-    static let shared = ItemsMockData()
-    
+struct ItemsMockData {
     var items: [Item] = [
         Item(
             title: "сыр Ламбер 500/0 230г",
@@ -244,9 +242,6 @@ final class ItemsMockData {
             isOrdered: false,
             isFavorite: true,
             reviews: ["perfect", "normal"]
-        ),
-        
+        )
     ]
-    
-    private init() {}
 }

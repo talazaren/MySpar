@@ -8,10 +8,25 @@
 import SwiftUI
 
 public struct CartButtonView: View {
+    let minusButtonAction: () -> Void
+    let plusButtonAction: () -> Void
+    
+    @Binding var amount: String
+    @Binding var cost: String
     @Binding var isAdded: Bool
     
-    public init(isAdded: Binding<Bool>) {
+    public init(
+        isAdded: Binding<Bool>,
+        minusButtonAction: @escaping () -> Void,
+        plusButtonAction: @escaping () -> Void,
+        amount: Binding<String>,
+        cost: Binding<String>
+    ) {
         self._isAdded = isAdded
+        self.minusButtonAction = minusButtonAction
+        self.plusButtonAction = plusButtonAction
+        self._amount = amount
+        self._cost = cost
     }
     
     public var body: some View {
@@ -23,9 +38,7 @@ public struct CartButtonView: View {
                     .foregroundStyle(Color("AppGreen"))
                 
                 HStack {
-                    Button(action: {
-                        //viewModel action
-                    }) {
+                    Button(action: minusButtonAction) {
                         Image("minusIcon")
                     }
                     .padding(.horizontal, 10)
@@ -33,19 +46,17 @@ public struct CartButtonView: View {
                     Spacer()
                     
                     VStack {
-                        Text("200") //viewModel
+                        Text(amount)
                             .font(.system(size: 16, weight: .bold))
                             .foregroundStyle(Color.white)
-                        Text("20") //viewModel
+                        Text(cost)
                             .font(.system(size: 12, weight: .regular))
                             .foregroundStyle(Color.white)
                     }
                     
                     Spacer()
                     
-                    Button(action: {
-                        //viewModel action
-                    }) {
+                    Button(action: plusButtonAction) {
                         Image("plusIcon")
                     }
                     .padding(.horizontal, 10)

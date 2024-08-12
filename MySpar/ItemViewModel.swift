@@ -15,23 +15,26 @@ enum UnitType: String, CaseIterable {
 
 @Observable
 final class ItemViewModel {
-    let unitCost: Double
+    var items: [Item]
+    var cart: [UUID: Double] = [:]
     
-    let incrementPiece = 1.0
-    let incrementKilo = 0.1
-    
-    var totalAmount = 0.0
-    var totalCost: Double {
-        unitCost * totalAmount
+    init(items: [Item]) {
+        self.items = items
     }
     
-    init(unitCost: Double) {
-        self.unitCost = unitCost
-        //self.totalAmount =
+    func addToCart(item: Item, amount: Double) {
+        cart[item.id] = (cart[item.id] ?? 0) + amount
     }
-    
-    /*func addIncrement(to value: Double, with increment: Double) {
-        totalAmount += increment
-        totalCost = value + totalAmount
-    }*/
+        
+    func removeFromCart(item: Item) {
+        cart[item.id] = nil
+    }
+        
+    func isInCart(item: Item) -> Bool {
+        cart[item.id] != nil
+    }
+        
+    func getAmountForItem(item: Item) -> Double {
+        cart[item.id] ?? 0
+    }
 }
