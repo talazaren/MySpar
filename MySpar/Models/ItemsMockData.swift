@@ -22,7 +22,7 @@ struct ItemsMockData {
         ),
         Item(
             title: "Энергетический Напиток",
-            cost: 95699.90,
+            cost: 9569.90,
             discount: nil,
             image: "Item2",
             accessory: nil,
@@ -198,7 +198,7 @@ struct ItemsMockData {
         ),
         Item(
             title: "Манго Кео",
-            cost: 95699.90,
+            cost: 9569.90,
             discount: 0.25,
             image: "Item18",
             accessory: .hitPrices,
