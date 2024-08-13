@@ -12,24 +12,24 @@ struct ItemsMockData {
         Item(
             title: "сыр Ламбер 500/0 230г",
             cost: 99.90,
-            discount: nil,
+            discount: 0.25,
             image: "Item1",
             accessory: .hitPrices,
             scores: [3, 5, 4, 2],
             country: nil,
             type: .pieces,
-            reviews: nil
+            reviews: ["nice", "good", "not bad", "doubt but ok", "yammy"]
         ),
         Item(
             title: "Энергетический Напиток",
             cost: 9569.90,
             discount: nil,
             image: "Item2",
-            accessory: nil,
+            accessory: .priceByCard,
             scores: [5, 5, 4, 1],
-            country: nil,
+            country: .italy,
             type: .pieces,
-            reviews: nil
+            reviews: ["yammy"]
         ),
         Item(
             title: "Салат Овощной с Крабовыми Палочками",
@@ -40,7 +40,7 @@ struct ItemsMockData {
             scores: [4, 5, 4, 4],
             country: nil,
             type: .pieces,
-            reviews: nil
+            reviews: ["not bad", "doubt but ok", "yammy"]
         ),
         Item(
             title: "Дорадо Охлажденная Непотрошеная 300-400г",
@@ -62,7 +62,7 @@ struct ItemsMockData {
             scores: [5, 5, 4, 2, 5, 4],
             country: nil,
             type: .pieces,
-            reviews: nil
+            reviews: ["not bad", "doubt but ok"]
         ),
         Item(
             title: "Огурцы тепличные cадово-огородные",
@@ -84,7 +84,7 @@ struct ItemsMockData {
             scores: [5, 5, 2, 1],
             country: nil,
             type: .both,
-            reviews: nil
+            reviews: ["not bad", "doubt but ok", "yammy"]
         ),
         Item(
             title: "Салат Овощной с Крабовыми Палочками",

@@ -50,11 +50,12 @@ struct ItemsView: View {
                 }
             default:
                 List(items, id: \.self) { item in
-                    ItemGridView(item: item)
+                    ItemListView(item: item)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))
+                        .alignmentGuide(.listRowSeparatorLeading) { _ in -20 }
                 }
+                .listStyle(.plain)
             }
-            
-            
             Spacer()
         }
         .edgesIgnoringSafeArea(.bottom)

@@ -113,4 +113,32 @@ final class ItemsViewModel {
     func getDiscountString(from item: Item) -> String {
         String(format: "%.0f", (item.discount ?? 0) * 100)
     }
+    
+    func getReviewString(from item: Item) -> String {
+        let form1 = "отзыв"
+        let form2 = "отзыва"
+        let form3 = "отзывов"
+        
+        let correctForm = getPluralForm(
+            forNumber: item.reviews?.count ?? 0,
+            form1: form1,
+            form2: form2,
+            form3: form3
+        )
+        
+        return "\(item.reviews?.count ?? 0) \(correctForm)"
+    }
+    
+    func getPluralForm(forNumber n: Int, form1: String, form2: String, form3: String) -> String {
+        let mod10 = n % 10
+        let mod100 = n % 100
+        
+        if mod10 == 1 && mod100 != 11 {
+            return form1
+        } else if mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20) {
+            return form2
+        } else {
+            return form3
+        }
+    }
 }

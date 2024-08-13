@@ -15,13 +15,21 @@ struct ItemGridView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                ItemImageView(item: item, viewModel: viewModel)
+                ItemImageGridView(item: item, viewModel: viewModel)
                 
                 Text(item.title)
                     .font(.system(size: 12, weight: .light))
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                     .padding(.horizontal, 8)
+                
+                if let country = item.country {
+                    Text(country.rawValue)
+                        .font(.system(size: 12, weight: .light))
+                        .foregroundStyle(Color.gray)
+                        .padding(.horizontal, 8)
+                        .padding(.top, 1)
+                }
                 
                 Spacer()
                 
@@ -43,7 +51,7 @@ struct ItemGridView: View {
         image: "Item1",
         accessory: .hitPrices,
         scores: [3, 5, 4, 2],
-        country: nil,
+        country: .france,
         type: .pieces,
         reviews: nil
     ))

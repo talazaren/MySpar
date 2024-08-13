@@ -8,7 +8,7 @@
 import SwiftUI
 import UISystem
 
-struct ItemImageView: View {
+struct ItemImageGridView: View {
     let item: Item
     var viewModel: ItemsViewModel
     
