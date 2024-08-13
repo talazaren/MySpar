@@ -11,7 +11,7 @@ public struct CartButtonView: View {
     let minusButtonAction: () -> Void
     let plusButtonAction: () -> Void
     
-    @Binding var cost: Double
+    var cost: Double
     var amount: Double
     var isAdded: Bool
     
@@ -20,13 +20,13 @@ public struct CartButtonView: View {
         minusButtonAction: @escaping () -> Void,
         plusButtonAction: @escaping () -> Void,
         amount: Double,
-        cost: Binding<Double>
+        cost: Double
     ) {
         self.isAdded = isAdded
         self.minusButtonAction = minusButtonAction
         self.plusButtonAction = plusButtonAction
         self.amount = amount
-        self._cost = cost
+        self.cost = cost
     }
     
     public var body: some View {
@@ -49,7 +49,7 @@ public struct CartButtonView: View {
                         Text(String(amount))
                             .font(.system(size: 16, weight: .bold))
                             .foregroundStyle(Color.white)
-                        Text(String(cost))
+                        Text("~" + String(format: "%.2f", cost) + " ₽")
                             .font(.system(size: 12, weight: .regular))
                             .foregroundStyle(Color.white)
                     }
@@ -72,7 +72,6 @@ public struct CartButtonView: View {
                     Image("cartIcon")
                 }
             }
-            //.contentTransition(.symbolEffect(.replace))
         }
     }
 }

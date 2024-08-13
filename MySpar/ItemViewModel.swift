@@ -19,12 +19,16 @@ final class ItemsViewModel {
     var cart: [UUID: Double] = [:]
     
     func decreaseAmount(for item: Item) {
-        let amount = getAmountForItem(item: item) - (item.type == .kilograms ? 0.1 : 1.0)
+        let amount = item.type == .kilograms ? 0.1 : 1.0
         if amount > 0 {
             addToCart(item: item, amount: -amount)
         } else {
             removeFromCart(item: item)
         }
+    }
+    
+    func increaseAmount(for item: Item) {
+        addToCart(item: item, amount: item.type == .kilograms ? 0.1 : 1.0)
     }
     
     func addToCart(item: Item, amount: Double) {
@@ -47,6 +51,10 @@ final class ItemsViewModel {
         
     func getAmountForItem(item: Item) -> Double {
         cart[item.id] ?? 0
+    }
+    
+    func getCostForItem(item: Item) -> Double {
+        item.cost * (cart[item.id] ?? 0)
     }
     
     func getDisplayedAmount(for item: Item, amount: Double) {

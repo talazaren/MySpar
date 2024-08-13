@@ -38,8 +38,6 @@ struct ItemGridView: View {
 }
 
 struct CostView: View {
-    @State private var cost = 0.0
-    
     var viewModel: ItemsViewModel
     let item: Item
     
@@ -77,10 +75,10 @@ struct CostView: View {
                     viewModel.decreaseAmount(for: item)
                 },
                 plusButtonAction: {
-                    viewModel.addToCart(item: item, amount: item.type == .kilograms ? 0.1 : 1.0)
+                    viewModel.increaseAmount(for: item)
                 },
                 amount: viewModel.getAmountForItem(item: item),
-                cost: $cost
+                cost: viewModel.getCostForItem(item: item)
             )
             .padding(4)
         }
