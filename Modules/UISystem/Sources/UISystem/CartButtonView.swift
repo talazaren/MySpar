@@ -59,7 +59,7 @@ public struct CartButtonView: View {
                     Spacer()
                     
                     VStack {
-                        Text(String(amount))
+                        Text(String(format: "%.1f", amount))
                             .font(.system(size: 16, weight: .bold))
                             .foregroundStyle(Color.white)
                         Text("~" + String(format: "%.2f", cost) + " ₽")

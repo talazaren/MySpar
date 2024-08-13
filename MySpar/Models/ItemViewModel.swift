@@ -17,7 +17,7 @@ enum UnitType: String, CaseIterable, Identifiable {
 
 struct CartItem {
     var amount: Double = 0
-    var selectedType: UnitType = .kg
+    var selectedType: UnitType
 }
 
 @Observable
@@ -26,7 +26,17 @@ final class ItemsViewModel {
     var cart: [UUID: CartItem] = [:]
     
     var favourites: [Item] = []
-    var orderedItems: [Item] = []
+    
+    func updateType(for item: Item, unitType: UnitType) {
+        switch unitType {
+        case .kg:
+            cart[item.id]?.selectedType = .kg
+            cart[item.id]?.amount = 0.1
+        case .pcs:
+            cart[item.id]?.selectedType = .pcs
+            cart[item.id]?.amount = 1
+        }
+    }
     
     func getItemIncrement(for item: Item) -> Double {
         if let type = cart[item.id]?.selectedType {
@@ -44,7 +54,11 @@ final class ItemsViewModel {
     
     func increaseAmount(for item: Item) {
         if !isInCart(item: item) {
-            cart[item.id] = CartItem()
+            switch item.type {
+            case .pieces: cart[item.id] = CartItem(selectedType: .pcs)
+            case .kilograms: cart[item.id] = CartItem(selectedType: .kg)
+            case .both: cart[item.id] = CartItem(selectedType: .kg)
+            }
         }
         let increment = getItemIncrement(for: item)
         addToCart(item: item, amount: increment)
@@ -75,10 +89,6 @@ final class ItemsViewModel {
         getAmountForItem(item: item) * item.cost
     }
     
-    func getDisplayedAmount(for item: Item, amount: Double) {
-        
-    }
-    
     func getSplitedStrings(of number: Double) -> [String] {
         let formattedNumber = String(format: "%.2f", number)
         let components = formattedNumber.split(separator: ".")
@@ -97,7 +107,7 @@ final class ItemsViewModel {
     }
     
     func isFavourite(item: Item) -> Bool {
-        return favourites.contains(item)
+        favourites.contains(item)
     }
     
     func getDiscountString(from item: Item) -> String {

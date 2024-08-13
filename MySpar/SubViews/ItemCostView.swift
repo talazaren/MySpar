@@ -13,19 +13,10 @@ struct ItemCostView: View {
     var viewModel: ItemsViewModel
     
     @State private var selectedType: UnitType = .kg
-    /*var selectedType: UnitType {
-        get {
-            viewModel.cart[item.id]?.selectedType ?? .kg
-        }
-        set {
-            viewModel.cart[item.id]?.selectedType = newValue
-        }
-    }
-    */
     
     var body: some View {
-        VStack {
-            switch viewModel.isInCart(item: item) {
+        VStack(spacing: 0) {
+            switch viewModel.isInCart(item: item) && item.type == .both {
             case true:
                 Picker("UnitType", selection: $selectedType) {
                     ForEach(UnitType.allCases) { unit in
@@ -33,6 +24,10 @@ struct ItemCostView: View {
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
+                .padding(.horizontal, 4)
+                .onChange(of: selectedType) { _, newValue in
+                    viewModel.updateType(for: item, unitType: newValue)
+                }
             default:
                 EmptyView()
             }
@@ -55,4 +50,9 @@ struct ItemCostView: View {
             .padding(4)
         }
     }
+}
+
+#Preview {
+    ItemsView()
+        .environment(ItemsViewModel())
 }

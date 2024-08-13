@@ -110,8 +110,8 @@
 		1A756F0F2C6BC119000B3481 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				1A756F0C2C6BC119000B3481 /* ItemCostView.swift */,
 				1A756F0D2C6BC119000B3481 /* ItemGridView.swift */,
+				1A756F0C2C6BC119000B3481 /* ItemCostView.swift */,
 				1A756F0E2C6BC119000B3481 /* ItemImageView.swift */,
 			);
 			path = SubViews;
