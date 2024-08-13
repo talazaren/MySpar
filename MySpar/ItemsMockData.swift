@@ -18,8 +18,6 @@ struct ItemsMockData {
             scores: [3, 5, 4, 2],
             country: nil,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -31,8 +29,6 @@ struct ItemsMockData {
             scores: [5, 5, 4, 1],
             country: nil,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -44,8 +40,6 @@ struct ItemsMockData {
             scores: [4, 5, 4, 4],
             country: nil,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -57,8 +51,6 @@ struct ItemsMockData {
             scores: [3, 5, 4, 2],
             country: nil,
             type: .both,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -70,8 +62,6 @@ struct ItemsMockData {
             scores: [5, 5, 4, 2, 5, 4],
             country: nil,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: true,
             reviews: nil
         ),
         Item(
@@ -83,8 +73,6 @@ struct ItemsMockData {
             scores: [5, 5],
             country: .france,
             type: .kilograms,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -96,8 +84,6 @@ struct ItemsMockData {
             scores: [5, 5, 2, 1],
             country: nil,
             type: .both,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -109,8 +95,6 @@ struct ItemsMockData {
             scores: [4, 5, 2, 4, 4],
             country: nil,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -122,8 +106,6 @@ struct ItemsMockData {
             scores: [4, 5, 5, 4, 5],
             country: nil,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -135,8 +117,6 @@ struct ItemsMockData {
             scores: [4, 5],
             country: nil,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -148,8 +128,6 @@ struct ItemsMockData {
             scores: [4, 5, 2, 1, 1],
             country: .france,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -161,8 +139,6 @@ struct ItemsMockData {
             scores: [4, 5, 5],
             country: nil,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -174,8 +150,6 @@ struct ItemsMockData {
             scores: [4, 5, 5, 5, 4],
             country: .italy,
             type: .kilograms,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -187,8 +161,6 @@ struct ItemsMockData {
             scores: [4, 5, 3, 5, 4],
             country: nil,
             type: .kilograms,
-            isOrdered: false,
-            isFavorite: false,
             reviews: nil
         ),
         Item(
@@ -200,8 +172,6 @@ struct ItemsMockData {
             scores: [4, 5, 3, 5, 4],
             country: nil,
             type: .both,
-            isOrdered: false,
-            isFavorite: false,
             reviews: ["nice", "good", "not bad", "doubt but ok", "yammy"]
         ),
         Item(
@@ -213,8 +183,6 @@ struct ItemsMockData {
             scores: [4, 5, 3, 2, 4],
             country: .france,
             type: .both,
-            isOrdered: false,
-            isFavorite: false,
             reviews: ["terrible", "normal", "not bad"]
         ),
         Item(
@@ -226,8 +194,6 @@ struct ItemsMockData {
             scores: [5, 5, 5, 5, 4],
             country: .france,
             type: .pieces,
-            isOrdered: false,
-            isFavorite: false,
             reviews: ["perfect", "normal", "not bad", "nice", "good", "excellent"]
         ),
         Item(
@@ -239,8 +205,6 @@ struct ItemsMockData {
             scores: [5, 4, 5, 5, 4],
             country: .russia,
             type: .both,
-            isOrdered: false,
-            isFavorite: true,
             reviews: ["perfect", "normal"]
         )
     ]

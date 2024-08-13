@@ -9,11 +9,20 @@ import SwiftUI
 
 public struct SaveButtonView: View {
     let isOrdered: Bool
-    @Binding var isFavorite: Bool
+    let addToFavourites: () -> Void
+    let removeFromFavourites: () -> Void
+    var isFavorite: Bool
     
-    public init(isOrdered: Bool, isFavorite: Binding<Bool>) {
+    public init(
+        isOrdered: Bool,
+        isFavorite: Bool,
+        addToFavourites: @escaping () -> Void,
+        removeFromFavourites: @escaping () -> Void
+    ) {
         self.isOrdered = isOrdered
-        self._isFavorite = isFavorite
+        self.isFavorite = isFavorite
+        self.addToFavourites = addToFavourites
+        self.removeFromFavourites = removeFromFavourites
     }
     
     public var body: some View {
@@ -30,9 +39,14 @@ public struct SaveButtonView: View {
                     .padding(4)
                 
                 Button(action: {
-                    isFavorite.toggle()
+                    switch isFavorite {
+                    case true:
+                        removeFromFavourites()
+                    default:
+                        addToFavourites()
+                    }
                 }) {
-                    Image(isFavorite ? "heartIcon" : "filledHeartIcon")
+                    Image(isFavorite ? "filledHeartIcon" : "heartIcon")
                         .resizable()
                         .frame(width: 16, height: 16)
                         .padding(4)

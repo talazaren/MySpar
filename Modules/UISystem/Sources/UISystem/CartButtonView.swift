@@ -76,8 +76,8 @@ public struct CartButtonView: View {
                 }
             }
         default:
-            HStack {
-                VStack {
+            HStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 4) {
                         Text(integerCost)
                             .font(.system(size: 20, weight: .bold))
@@ -94,11 +94,12 @@ public struct CartButtonView: View {
                     }
                     
                     if isDiscount {
-                        Text(String(discountingCost))
+                        Text(String(format: "%.2f", discountingCost))
                             .font(.system(size: 12, weight: .regular))
                             .foregroundStyle(Color.gray)
+                            .strikethrough()
                             .frame(height: 14)
-                            .multilineTextAlignment(.leading)
+                            .padding(.leading, 8)
                     }
                 }
                 Spacer()

@@ -25,6 +25,9 @@ final class ItemsViewModel {
     var items: [Item] = []
     var cart: [UUID: CartItem] = [:]
     
+    var favourites: [Item] = []
+    var orderedItems: [Item] = []
+    
     func getItemIncrement(for item: Item) -> Double {
         if let type = cart[item.id]?.selectedType {
             return type == .kg ? 0.1 : 1
@@ -81,5 +84,23 @@ final class ItemsViewModel {
         let components = formattedNumber.split(separator: ".")
         
         return [String(components[0]), String(components[1])]
+    }
+    
+    func addToFavourites(item: Item) {
+        favourites.append(item)
+    }
+    
+    func removeFromFavourites(item: Item) {
+        if let index = favourites.firstIndex(of: item) {
+            favourites.remove(at: index)
+        }
+    }
+    
+    func isFavourite(item: Item) -> Bool {
+        return favourites.contains(item)
+    }
+    
+    func getDiscountString(from item: Item) -> String {
+        String(format: "%.0f", (item.discount ?? 0) * 100)
     }
 }

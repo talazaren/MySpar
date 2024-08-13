@@ -15,19 +15,17 @@ struct ItemGridView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                Image(item.image)
-                    .resizable()
-                    .frame(width: 168, height: 168)
+                ItemImageView(item: item, viewModel: viewModel)
                 
                 Text(item.title)
                     .font(.system(size: 12, weight: .light))
-                    .frame(height: 14)
+                    .lineLimit(2)
                     .multilineTextAlignment(.leading)
                     .padding(.horizontal, 8)
                 
                 Spacer()
                 
-                CostView(viewModel: viewModel, item: item)
+                CostView(item: item, viewModel: viewModel)
             }
         }
         .frame(height: 278)
@@ -37,9 +35,67 @@ struct ItemGridView: View {
     }
 }
 
-struct CostView: View {
-    var viewModel: ItemsViewModel
+struct ItemImageView: View {
     let item: Item
+    var viewModel: ItemsViewModel
+    
+    var body: some View {
+        ZStack {
+            Image(item.image)
+                .resizable()
+                .frame(width: 168, height: 168)
+            
+            if let accessory = item.accessory {
+                AccessoryView(itemAccessory: accessory)
+                    .position(x: 44, y: 8)
+            }
+             
+            HStack {
+                VStack {
+                    Spacer()
+                    
+                    HStack(spacing: 2) {
+                        Image("star")
+                            .padding(.leading, 4)
+                        
+                        Text(String(format: "%.1f", item.rating))
+                            .font(.system(size: 12))
+                    }
+                    
+                }
+                
+                Spacer()
+                
+                VStack {
+                    SaveButtonView(
+                        isOrdered: false,
+                        isFavorite: viewModel.isFavourite(item: item),
+                        addToFavourites: {
+                            viewModel.addToFavourites(item: item)
+                        }, removeFromFavourites: {
+                            viewModel.removeFromFavourites(item: item)
+                        }
+                    )
+                    
+                    Spacer()
+                    
+                    if item.discount != nil {
+                        Text(viewModel.getDiscountString(from: item) + "%")
+                            .font(.system(size: 16, weight: .heavy))
+                            .foregroundStyle(Color("AppRed"))
+                            .padding(.horizontal, 5)
+                    }
+                }
+            }
+        }
+        .frame(height: 168)
+    }
+}
+
+
+struct CostView: View {
+    let item: Item
+    var viewModel: ItemsViewModel
     
     @State private var selectedType: UnitType = .kg
     /*var selectedType: UnitType {
@@ -91,14 +147,12 @@ struct CostView: View {
     ItemGridView(item: Item(
         title: "сыр Ламбер 500/0 230г",
         cost: 99.90,
-        discount: nil,
+        discount: 0.25,
         image: "Item1",
         accessory: .hitPrices,
         scores: [3, 5, 4, 2],
         country: nil,
         type: .pieces,
-        isOrdered: false,
-        isFavorite: false,
         reviews: nil
     ))
         .environment(ItemsViewModel())

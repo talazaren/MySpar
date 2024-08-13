@@ -8,7 +8,7 @@
 import Foundation
 import UISystem
 
-struct Item {
+struct Item: Hashable {
     let id = UUID()
     let title: String
     let cost: Double
@@ -18,17 +18,15 @@ struct Item {
     let scores: [Int]
     let country: Country?
     let type: AmountType
-    
-    var isOrdered: Bool
-    var isFavorite: Bool
     var reviews: [String]?
     
     var rating: Double {
-        Double(scores.reduce(0, +) / scores.count)
+        Double(scores.reduce(0, +)) / Double(scores.count)
     }
+    
     var discountingCost: Double {
         if let discount {
-            return cost * (1 - discount)
+            return cost * (1 + discount)
         } else { return cost }
     }
 }
