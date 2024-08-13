@@ -8,37 +8,52 @@
 import SwiftUI
 import Observation
 
-enum UnitType: String, CaseIterable {
+enum UnitType: String, CaseIterable, Identifiable {
     case kg = "Кг"
     case pcs = "Шт"
+    
+    var id: Self { self }
+}
+
+struct CartItem {
+    var amount: Double = 0
+    var selectedType: UnitType = .kg
 }
 
 @Observable
 final class ItemsViewModel {
     var items: [Item] = []
-    var cart: [UUID: Double] = [:]
+    var cart: [UUID: CartItem] = [:]
+    
+    func getItemIncrement(for item: Item) -> Double {
+        if let type = cart[item.id]?.selectedType {
+            return type == .kg ? 0.1 : 1
+        } else {
+            return item.type == .kilograms ? 0.1 : 1
+        }
+    }
     
     func decreaseAmount(for item: Item) {
-        let amount = item.type == .kilograms ? 0.1 : 1.0
-        if amount > 0 {
-            addToCart(item: item, amount: -amount)
-        } else {
-            removeFromCart(item: item)
-        }
+        let increment = getItemIncrement(for: item)
+        addToCart(item: item, amount: -increment)
+        
     }
     
     func increaseAmount(for item: Item) {
-        addToCart(item: item, amount: item.type == .kilograms ? 0.1 : 1.0)
+        if !isInCart(item: item) {
+            cart[item.id] = CartItem()
+        }
+        let increment = getItemIncrement(for: item)
+        addToCart(item: item, amount: increment)
     }
     
     func addToCart(item: Item, amount: Double) {
-        cart[item.id] = (cart[item.id] ?? 0) + amount
+        cart[item.id]?.amount = (cart[item.id]?.amount ?? 0) + amount
         
-        guard let amount = cart[item.id] else { return }
+        guard let amount = cart[item.id]?.amount else { return }
         if amount <= 0 {
             removeFromCart(item: item)
         }
-        
     }
         
     func removeFromCart(item: Item) {
@@ -50,11 +65,11 @@ final class ItemsViewModel {
     }
         
     func getAmountForItem(item: Item) -> Double {
-        cart[item.id] ?? 0
+        cart[item.id]?.amount ?? 0
     }
     
     func getCostForItem(item: Item) -> Double {
-        item.cost * (cart[item.id] ?? 0)
+        getAmountForItem(item: item) * item.cost
     }
     
     func getDisplayedAmount(for item: Item, amount: Double) {

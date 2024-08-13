@@ -41,33 +41,30 @@ struct CostView: View {
     var viewModel: ItemsViewModel
     let item: Item
     
+    @State private var selectedType: UnitType = .kg
+    /*var selectedType: UnitType {
+        get {
+            viewModel.cart[item.id]?.selectedType ?? .kg
+        }
+        set {
+            viewModel.cart[item.id]?.selectedType = newValue
+        }
+    }
+    */
+    
     var body: some View {
-        HStack {
-            VStack {
-                HStack(spacing: 4) {
-                    Text(viewModel.getSplitedStrings(of: item.cost)[0])
-                        .font(.system(size: 20, weight: .bold))
-                        .frame(height: 22)
-                        .multilineTextAlignment(.leading)
-                        .padding(.leading, 8)
-                    
-                    Text(viewModel.getSplitedStrings(of: item.cost)[1])
-                        .font(.system(size: 16, weight: .bold))
-                        .frame(height: 22)
-                        .multilineTextAlignment(.leading)
-                    
-                    Image("perAmountIcon")
+        VStack {
+            switch viewModel.isInCart(item: item) {
+            case true:
+                Picker("UnitType", selection: $selectedType) {
+                    ForEach(UnitType.allCases) { unit in
+                        Text(unit.rawValue).tag(unit)
+                    }
                 }
-                
-                if item.discount != nil {
-                    Text(String(item.discountingCost))
-                        .font(.system(size: 12, weight: .regular))
-                        .foregroundStyle(Color.gray)
-                        .frame(height: 14)
-                        .multilineTextAlignment(.leading)
-                }
+                .pickerStyle(SegmentedPickerStyle())
+            default:
+                EmptyView()
             }
-            Spacer()
             
             CartButtonView(
                 isAdded: viewModel.isInCart(item: item),
@@ -78,7 +75,11 @@ struct CostView: View {
                     viewModel.increaseAmount(for: item)
                 },
                 amount: viewModel.getAmountForItem(item: item),
-                cost: viewModel.getCostForItem(item: item)
+                cost: viewModel.getCostForItem(item: item),
+                integerCost: viewModel.getSplitedStrings(of: item.cost)[0],
+                fractionalCost: viewModel.getSplitedStrings(of: item.cost)[1],
+                isDiscount: item.discount != nil,
+                discountingCost: item.discountingCost
             )
             .padding(4)
         }

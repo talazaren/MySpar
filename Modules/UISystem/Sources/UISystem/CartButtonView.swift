@@ -11,6 +11,11 @@ public struct CartButtonView: View {
     let minusButtonAction: () -> Void
     let plusButtonAction: () -> Void
     
+    let integerCost: String
+    let fractionalCost: String
+    let isDiscount: Bool
+    let discountingCost: Double
+    
     var cost: Double
     var amount: Double
     var isAdded: Bool
@@ -20,13 +25,21 @@ public struct CartButtonView: View {
         minusButtonAction: @escaping () -> Void,
         plusButtonAction: @escaping () -> Void,
         amount: Double,
-        cost: Double
+        cost: Double,
+        integerCost: String,
+        fractionalCost: String,
+        isDiscount: Bool,
+        discountingCost: Double
     ) {
         self.isAdded = isAdded
         self.minusButtonAction = minusButtonAction
         self.plusButtonAction = plusButtonAction
         self.amount = amount
         self.cost = cost
+        self.integerCost = integerCost
+        self.fractionalCost = fractionalCost
+        self.isDiscount = isDiscount
+        self.discountingCost = discountingCost
     }
     
     public var body: some View {
@@ -63,16 +76,45 @@ public struct CartButtonView: View {
                 }
             }
         default:
-            Button(action: plusButtonAction) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 40)
-                        .frame(width: 48, height: 36)
-                        .foregroundStyle(Color("AppGreen"))
+            HStack {
+                VStack {
+                    HStack(spacing: 4) {
+                        Text(integerCost)
+                            .font(.system(size: 20, weight: .bold))
+                            .frame(height: 22)
+                            .multilineTextAlignment(.leading)
+                            .padding(.leading, 8)
+                        
+                        Text(fractionalCost)
+                            .font(.system(size: 16, weight: .bold))
+                            .frame(height: 22)
+                            .multilineTextAlignment(.leading)
+                        
+                        Image("perAmountIcon")
+                    }
                     
-                    Image("cartIcon")
+                    if isDiscount {
+                        Text(String(discountingCost))
+                            .font(.system(size: 12, weight: .regular))
+                            .foregroundStyle(Color.gray)
+                            .frame(height: 14)
+                            .multilineTextAlignment(.leading)
+                    }
+                }
+                Spacer()
+                
+                Button(action: plusButtonAction) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 40)
+                            .frame(width: 48, height: 36)
+                            .foregroundStyle(Color("AppGreen"))
+                        
+                        Image("cartIcon")
+                    }
                 }
             }
         }
     }
 }
+
 
