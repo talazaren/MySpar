@@ -10,25 +10,18 @@ import UISystem
 
 struct ItemGridView: View {
     @Environment(ItemsViewModel.self) private var viewModel
+    @Binding var isGrid: Bool
     let item: Item
     
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                ItemImageGridView(item: item, viewModel: viewModel)
+                ItemImageGridView(isGrid: $isGrid, item: item, viewModel: viewModel)
                 
-                Text(item.title)
-                    .font(.system(size: 12, weight: .light))
-                    .lineLimit(2)
-                    .multilineTextAlignment(.leading)
-                    .padding(.horizontal, 8)
+                TitleView(title: item.title)
                 
                 if let country = item.country {
-                    Text(country.rawValue)
-                        .font(.system(size: 12, weight: .light))
-                        .foregroundStyle(Color.gray)
-                        .padding(.horizontal, 8)
-                        .padding(.top, 1)
+                    CountryView(country: country.rawValue)
                 }
                 
                 Spacer()
@@ -44,7 +37,7 @@ struct ItemGridView: View {
 }
 
 #Preview {
-    ItemGridView(item: Item(
+    ItemGridView(isGrid: .constant(true), item: Item(
         title: "сыр Ламбер 500/0 230г",
         cost: 99.90,
         discount: 0.25,

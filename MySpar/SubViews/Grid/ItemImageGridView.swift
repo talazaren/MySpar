@@ -9,6 +9,8 @@ import SwiftUI
 import UISystem
 
 struct ItemImageGridView: View {
+    @Binding var isGrid: Bool
+    
     let item: Item
     var viewModel: ItemsViewModel
     
@@ -29,13 +31,11 @@ struct ItemImageGridView: View {
                 VStack {
                     Spacer()
                     
-                    HStack(spacing: 2) {
-                        Image("star")
-                            .padding(.leading, 4)
-                        
-                        Text(String(format: "%.1f", item.rating))
-                            .font(.system(size: 12))
-                    }
+                    ReviewsView(
+                        rating: item.rating,
+                        review: viewModel.getReviewString(from: item),
+                        isGrid: isGrid
+                    )
                 }
                 
                 Spacer()
@@ -64,5 +64,20 @@ struct ItemImageGridView: View {
         }
         .frame(height: 168)
     }
+}
+
+#Preview {
+    ItemGridView(isGrid: .constant(true), item: Item(
+        title: "сыр Ламбер 500/0 230г",
+        cost: 99.90,
+        discount: 0.25,
+        image: "Item1",
+        accessory: .hitPrices,
+        scores: [3, 5, 4, 2],
+        country: .france,
+        type: .pieces,
+        reviews: nil
+    ))
+        .environment(ItemsViewModel())
 }
 

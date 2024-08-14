@@ -42,7 +42,7 @@ struct ItemsView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(items, id: \.self) { item in
-                            ItemGridView(item: item)
+                            ItemGridView(isGrid: $isGrid, item: item)
                         }
                     }
                     .padding(.horizontal, 16)
@@ -50,7 +50,7 @@ struct ItemsView: View {
                 }
             default:
                 List(items, id: \.self) { item in
-                    ItemListView(item: item)
+                    ItemListView(isGrid: $isGrid, item: item)
                         .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))
                         .alignmentGuide(.listRowSeparatorLeading) { _ in -20 }
                 }

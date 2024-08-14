@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ItemListView: View {
     @Environment(ItemsViewModel.self) private var viewModel
+    @Binding var isGrid: Bool
     let item: Item
     
     var body: some View {
         HStack {
             ItemImageListView(item: item, viewModel: viewModel)
                 
-            ItemDescriptionView(item: item, viewModel: viewModel)
+            ItemDescriptionView(isGrid: $isGrid, item: item, viewModel: viewModel)
         }
         .frame(height: 176)
         .background(Color.white)
@@ -23,7 +24,7 @@ struct ItemListView: View {
 }
 
 #Preview {
-    ItemListView(item: Item(
+    ItemListView(isGrid: .constant(false), item: Item(
         title: "сыр Ламбер 500/0 230г",
         cost: 99.90,
         discount: 0.25,

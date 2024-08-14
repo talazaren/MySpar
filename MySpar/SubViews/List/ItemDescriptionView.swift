@@ -9,43 +9,38 @@ import SwiftUI
 import UISystem
 
 struct ItemDescriptionView: View {
+    @Binding var isGrid: Bool
+    
     let item: Item
     var viewModel: ItemsViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack(spacing: 2) {
-                Image("star")
-                    .padding(.leading, 4)
-                
-                Text(String(format: "%.1f", item.rating))
-                    .font(.system(size: 12))
-                    .padding(.horizontal, 2)
-                
-                Rectangle()
-                    .frame(width: 1, height: 16)
-                    .foregroundStyle(Color.gray)
-                
-                Text(viewModel.getReviewString(from: item))
-                    .font(.system(size: 12))
-                    .foregroundStyle(Color.gray)
-                    .padding(.horizontal, 2)
+        VStack {
+            HStack {
+                VStack(alignment: .leading) {
+                    ReviewsView(
+                        rating: item.rating,
+                        review: viewModel.getReviewString(from: item),
+                        isGrid: isGrid
+                    )
+                    
+                    TitleView(title: item.title)
+                    
+                    if let country = item.country {
+                        CountryView(country: country.rawValue)
+                    }
+                }
+                Spacer()
+                SaveButtonView(
+                    isOrdered: false,
+                    isFavorite: viewModel.isFavourite(item: item),
+                    addToFavourites: {
+                        viewModel.addToFavourites(item: item)
+                    }, removeFromFavourites: {
+                        viewModel.removeFromFavourites(item: item)
+                    }
+                )
             }
-            
-            Text(item.title)
-                .font(.system(size: 12, weight: .light))
-                .lineLimit(2)
-                .multilineTextAlignment(.leading)
-                .padding(.horizontal, 8)
-            
-            if let country = item.country {
-                Text(country.rawValue)
-                    .font(.system(size: 12, weight: .light))
-                    .foregroundStyle(Color.gray)
-                    .padding(.horizontal, 8)
-                    .padding(.top, 1)
-            }
-            
             Spacer()
             
             ItemCostView(item: item, viewModel: viewModel)
@@ -57,7 +52,8 @@ struct ItemDescriptionView: View {
 }
 
 #Preview {
-    ItemListView(item: Item(
+    ItemListView(isGrid: .constant(false), 
+        item: Item(
         title: "сыр Ламбер 500/0 230г",
         cost: 99.90,
         discount: 0.25,
