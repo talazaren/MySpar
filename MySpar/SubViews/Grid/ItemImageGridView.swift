@@ -26,21 +26,11 @@ struct ItemImageGridView: View {
                 AccessoryView(itemAccessory: accessory)
                     .position(x: CGFloat(offset), y: 8)
             }
-             
-            HStack {
-                VStack {
+            
+            VStack {
+                HStack {
                     Spacer()
                     
-                    ReviewsView(
-                        rating: item.rating,
-                        review: viewModel.getReviewString(from: item),
-                        isGrid: isGrid
-                    )
-                }
-                
-                Spacer()
-                
-                VStack {
                     SaveButtonView(
                         isOrdered: false,
                         isFavorite: viewModel.isFavourite(item: item),
@@ -49,6 +39,15 @@ struct ItemImageGridView: View {
                         }, removeFromFavourites: {
                             viewModel.removeFromFavourites(item: item)
                         }
+                    )
+                }
+                Spacer()
+                
+                HStack {
+                    ReviewsView(
+                        rating: item.rating,
+                        review: viewModel.getReviewString(from: item),
+                        isGrid: isGrid
                     )
                     
                     Spacer()

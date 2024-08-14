@@ -16,7 +16,7 @@ struct ItemDescriptionView: View {
     
     var body: some View {
         VStack {
-            HStack {
+            HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     ReviewsView(
                         rating: item.rating,
@@ -29,17 +29,22 @@ struct ItemDescriptionView: View {
                     if let country = item.country {
                         CountryView(country: country.rawValue)
                     }
+                    
+                    Spacer()
                 }
-                Spacer()
-                SaveButtonView(
-                    isOrdered: false,
-                    isFavorite: viewModel.isFavourite(item: item),
-                    addToFavourites: {
-                        viewModel.addToFavourites(item: item)
-                    }, removeFromFavourites: {
-                        viewModel.removeFromFavourites(item: item)
-                    }
-                )
+                
+                VStack {
+                    SaveButtonView(
+                        isOrdered: false,
+                        isFavorite: viewModel.isFavourite(item: item),
+                        addToFavourites: {
+                            viewModel.addToFavourites(item: item)
+                        }, removeFromFavourites: {
+                            viewModel.removeFromFavourites(item: item)
+                        }
+                    )
+                    Spacer()
+                }
             }
             Spacer()
             
