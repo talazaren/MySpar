@@ -55,6 +55,7 @@ struct ItemsView: View {
                         .alignmentGuide(.listRowSeparatorLeading) { _ in -20 }
                 }
                 .listStyle(.plain)
+                .buttonStyle(BorderlessButtonStyle())
             }
             Spacer()
         }

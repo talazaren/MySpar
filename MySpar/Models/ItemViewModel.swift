@@ -16,7 +16,7 @@ enum UnitType: String, CaseIterable, Identifiable {
 }
 
 struct CartItem {
-    var amount: Double = 0
+    var amount: Decimal = 0
     var selectedType: UnitType
 }
 
@@ -38,7 +38,7 @@ final class ItemsViewModel {
         }
     }
     
-    func getItemIncrement(for item: Item) -> Double {
+    func getItemIncrement(for item: Item) -> Decimal {
         if let type = cart[item.id]?.selectedType {
             return type == .kg ? 0.1 : 1
         } else {
@@ -64,7 +64,7 @@ final class ItemsViewModel {
         addToCart(item: item, amount: increment)
     }
     
-    func addToCart(item: Item, amount: Double) {
+    func addToCart(item: Item, amount: Decimal) {
         cart[item.id]?.amount = (cart[item.id]?.amount ?? 0) + amount
         
         guard let amount = cart[item.id]?.amount else { return }
@@ -81,12 +81,13 @@ final class ItemsViewModel {
         cart[item.id] != nil
     }
         
-    func getAmountForItem(item: Item) -> Double {
+    func getAmountForItem(item: Item) -> Decimal {
         cart[item.id]?.amount ?? 0
     }
     
     func getCostForItem(item: Item) -> Double {
-        getAmountForItem(item: item) * item.cost
+        let amountDouble = Double(truncating: getAmountForItem(item: item) as NSNumber)
+        return amountDouble * item.cost
     }
     
     func getSplitedStrings(of number: Double) -> [String] {

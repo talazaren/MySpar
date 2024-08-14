@@ -17,14 +17,14 @@ public struct CartButtonView: View {
     let discountingCost: Double
     
     var cost: Double
-    var amount: Double
+    var amount: Decimal
     var isAdded: Bool
     
     public init(
         isAdded: Bool,
         minusButtonAction: @escaping () -> Void,
         plusButtonAction: @escaping () -> Void,
-        amount: Double,
+        amount: Decimal,
         cost: Double,
         integerCost: String,
         fractionalCost: String,
@@ -59,7 +59,7 @@ public struct CartButtonView: View {
                     Spacer()
                     
                     VStack {
-                        Text(String(format: "%.1f", amount))
+                        Text(String(describing: amount))
                             .font(.system(size: 16, weight: .bold))
                             .foregroundStyle(Color.white)
                         Text("~" + String(format: "%.2f", cost) + " ₽")
